@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <form action="/" method="post">
+      <!-- This is now ingredient_name in route -->
+      <input type="text" name="ingredient_name">
+      <input type="submit">
+    </form>
+
+    <ul>
+      <% ingredients.forEach(ingredient => { %>
+        <li><%= ingredient.name %> <a href="/ingredients/<%= ingredient._id %>/edit">Edit</a></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
