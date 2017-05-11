@@ -12,6 +12,14 @@ exports.getIngredients = (req, res) => {
     })
 };
 
+// Get Json/API
+exports.getApiIngredients = (req, res) => {
+  Ingredient.find()
+    .then(ingredients => {
+      res.json(ingredients)
+    })
+};
+
 // Post Ingredient
 exports.postIngredients = (req, res) => {
   const name = req.body.ingredient_name;
@@ -20,6 +28,17 @@ exports.postIngredients = (req, res) => {
   ingredient.save()
     .then(() => {
       res.redirect('/')
+    })
+};
+
+// Post Api ingredient
+exports.postApiIngredients = (req, res) => {
+  const name = req.body.ingredient_name;
+  let ingredient = new Ingredient();
+  ingredient.name = name;
+  ingredient.save()
+    .then(() => {
+      res.json(ingredient)
     })
 };
 

@@ -10,8 +10,14 @@ var users = require('./routes/users');
 
 var mongoose = require('mongoose');
 
+var middleware = require('./middleware/middleware')
+
 var app = express();
 
+//json webtoken
+var jwt = require('jsonwebtoken');
+var token = jwt.sign({ email: 'peter@gmail.com' }, 'secret');
+console.log(token);
 //database is called recipes
 mongoose.connect('mongodb://localhost/recipes')
 const { connection: db} = mongoose;
@@ -33,6 +39,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/ingredients/:id/',middleware.mw); //access middleware everytime we hit that url
 app.use('/', index);
 app.use('/users', users);
 
