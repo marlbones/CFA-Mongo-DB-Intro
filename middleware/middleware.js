@@ -1,4 +1,5 @@
 const Ingredient = require('../models/Ingredient');
+var jwt = require('jsonwebtoken');
 
 // Authenticating
 exports.mw = function(req, res, next) {
@@ -8,7 +9,15 @@ exports.mw = function(req, res, next) {
       req.query.key ||
       req.headers['x-access-key'];
 
-      if (key === '1234') { //?key=1234 in url to pass key
+      //Token authentication
+      var decoded = jwt.verify(key, 'secret');
+      console.log(decoded.email)
+      let found = false;
+      if (decoded.email === 'marlon@gmail.com') {
+        found = true;
+      };
+
+      if (found) { //?key=1234 in url to pass key
           next();
       } else {
     res.json(401, { //'401' doesn't allow access to a page
@@ -16,4 +25,4 @@ exports.mw = function(req, res, next) {
         message: 'Not Authorised',
     });
   }
-}
+};

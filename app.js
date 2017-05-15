@@ -16,7 +16,7 @@ var app = express();
 
 //json webtoken
 var jwt = require('jsonwebtoken');
-var token = jwt.sign({ email: 'peter@gmail.com' }, 'secret');
+var token = jwt.sign({ email: 'marlon@gmail.com' }, 'secret');
 console.log(token);
 //database is called recipes
 mongoose.connect('mongodb://localhost/recipes')
