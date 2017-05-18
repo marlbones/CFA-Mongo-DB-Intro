@@ -19,8 +19,9 @@ var jwt = require('jsonwebtoken');
 var token = jwt.sign({ email: 'marlon@gmail.com' }, 'secret');
 console.log(token);
 //database is called recipes
-const mLabPassword = process.env.MLAB_PASSWORD;
-mongoose.connect(`mongodb://guest:${mLabPassword}@ds143241.mlab.com:43241/mdimmlabs`)
+const mLabDB = process.env.MLAB_PASSWORD;
+const localDB = 'mongodb://localhost/recipes'
+mongoose.connect(`mongodb://guest:${mLabDB}@ds143241.mlab.com:43241/mdimmlabs`);
 const { connection: db} = mongoose;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -40,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/ingredients/:id/',middleware.mw); //access middleware everytime we hit that url
+// app.use('/ingredients/:id/',middleware.mw); //access middleware everytime we hit that url
 app.use('/', index);
 app.use('/users', users);
 
