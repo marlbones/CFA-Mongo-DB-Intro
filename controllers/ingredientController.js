@@ -33,7 +33,7 @@ exports.postIngredients = (req, res) => {
 
 // Post Api ingredient
 exports.postApiIngredients = (req, res) => {
-  const name = req.body.ingredient_name;
+  const name = req.query.ingredient_name;
   let ingredient = new Ingredient();
   ingredient.name = name;
   ingredient.save()
