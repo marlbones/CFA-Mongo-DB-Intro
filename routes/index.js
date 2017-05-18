@@ -9,7 +9,7 @@ router.get('/', ingredientController.getIngredients);
 router.get('/api/v1/ingredients', ingredientController.getApiIngredients);
 
 router.post('/', ingredientController.postIngredients);
-router.post('/api/v1/apipost', ingredientController.postApiIngredients);
+router.post('/api/v1/ingredients', ingredientController.postApiIngredients);
 
 router.get('/ingredients/:id/edit', ingredientController.editIngredients );
 
